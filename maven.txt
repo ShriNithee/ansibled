@@ -1,0 +1,230 @@
+public class Main {
+    public static void main(String[] args) {
+        int subject1 = 85;
+        int subject2 = 90;
+        int subject3 = 80;
+
+        double average = (subject1 + subject2 + subject3) / 3.0;
+        char grade;
+
+        if (average >= 90) {
+            grade = 'A';
+        } else if (average >= 75) {
+            grade = 'B';
+        } else if (average >= 50) {
+            grade = 'C';
+        } else {
+            grade = 'F';
+        }
+
+        System.out.printf("Average marks: %.2f%n", average);
+        System.out.println("Grade: " + grade);
+    }
+}
+---
+public class Main {
+    public static void main(String[] args) {
+        int subject1 = 85;
+        int subject2 = 90;
+        int subject3 = 80;
+
+        double average = (subject1 + subject2 + subject3) / 3.0;
+        char grade;
+
+        if (average >= 90) {
+            grade = 'A';
+        } else if (average >= 75) {
+            grade = 'B';
+        } else if (average >= 50) {
+            grade = 'C';
+        } else {
+            grade = 'F';
+        }
+
+        System.out.printf("Average marks: %.2f%n", average);
+        System.out.println("Grade: " + grade);
+    }
+}
+---
+public class Main {
+    public static void main(String[] args) {
+        double principal = 10000;
+        double rate = 5;  // Annual interest rate in percent
+        double time = 2;  // Time in years
+
+        double simpleInterest = (principal * rate * time) / 100.0;
+
+        System.out.printf("Simple interest: ₹%.2f%n", simpleInterest);
+    }
+}
+---
+public class Main {
+    public static void main(String[] args) {
+        double radius = 5.0;
+        double area = Math.PI * radius * radius;
+
+        System.out.println("Radius: " + radius);
+        System.out.printf("Area of the circle: %.2f square units%n", area);
+    }
+}
+---
+---
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+</dependency>
+--
+package org.example;
+
+public class Main {
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static int subtract(int a, int b) {
+        return a - b;
+    }
+
+    public static int multiply(int a, int b) {
+        return a * b;
+    }
+
+    public static double divide(int a, int b) {
+        if (b == 0) {
+            throw new ArithmeticException("Cannot divide by zero");
+        }
+        return (double) a / b;
+    }
+
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 4;
+
+        System.out.println("Addition: " + add(a, b));
+        System.out.println("Subtraction: " + subtract(a, b));
+        System.out.println("Multiplication: " + multiply(a, b));
+
+        try {
+            System.out.println("Division: " + divide(a, b));
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+--package org.example;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
+public class MainTest {
+    @Test
+    public void addsTwoNumbers() {
+        assertEquals(14, Main.add(10, 4));
+    }
+
+    @Test
+    public void subtractsTwoNumbers() {
+        assertEquals(6, Main.subtract(10, 4));
+    }
+
+    @Test
+    public void multipliesTwoNumbers() {
+        assertEquals(40, Main.multiply(10, 4));
+    }
+
+    @Test
+    public void dividesWithADecimalResult() {
+        assertEquals(2.5, Main.divide(10, 4), 0.0001);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void rejectsDivisionByZero() {
+        Main.divide(10, 0);
+    }
+}
+---
+package org.example;
+
+public class Main {
+    public static boolean isLeapYear(int year) {
+        return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+    }
+
+    public static void main(String[] args) {
+        int year = 2024;
+
+        if (isLeapYear(year)) {
+            System.out.println(year + " is a leap year.");
+        } else {
+            System.out.println(year + " is not a leap year.");
+        }
+    }
+}
+--
+package org.example;
+
+import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+public class MainTest {
+    @Test
+    public void year2024IsALeapYear() {
+        assertTrue(Main.isLeapYear(2024));
+    }
+
+    @Test
+    public void year2023IsNotALeapYear() {
+        assertFalse(Main.isLeapYear(2023));
+    }
+
+    @Test
+    public void centuryYear2000IsALeapYear() {
+        assertTrue(Main.isLeapYear(2000));
+    }
+
+    @Test
+    public void centuryYear1900IsNotALeapYear() {
+        assertFalse(Main.isLeapYear(1900));
+    }
+}
+---
+package org.example;
+
+public class Main {
+    public static double finalAmount(double amount) {
+        return amount >= 1000 ? amount * 0.90 : amount;
+    }
+
+    public static void main(String[] args) {
+        double amount = 1500;
+        System.out.printf("Final amount: ₹%.2f%n", finalAmount(amount));
+    }
+}
+--
+package org.example;
+
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class MainTest {
+    @Test
+    public void below1000() {
+        assertEquals(999.0, Main.finalAmount(999), 0.001);
+    }
+
+    @Test
+    public void exactly1000() {
+        assertEquals(900.0, Main.finalAmount(1000), 0.001);
+    }
+
+    @Test
+    public void above1000() {
+        assertEquals(1350.0, Main.finalAmount(1500), 0.001);
+    }
+}
+---
