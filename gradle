@@ -1,0 +1,140 @@
+build common for all
+  
+
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'org.example.Main'
+}
+
+tasks.named('run') {
+    standardInput = System.in
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.example.Main'
+    }
+}
+
+
+1.
+package org.example;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Principal: ");
+        double p = sc.nextDouble();
+
+        System.out.print("Enter Rate: ");
+        double r = sc.nextDouble();
+
+        System.out.print("Enter Time: ");
+        double t = sc.nextDouble();
+
+        double si = (p * r * t) / 100;
+
+        System.out.println("Simple Interest = " + si);
+
+        sc.close();
+    }
+}
+
+2.
+package org.example;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int[] numbers = new int[5];
+        int sum = 0;
+
+        System.out.println("Enter five numbers:");
+
+        for (int i = 0; i < 5; i++) {
+            numbers[i] = sc.nextInt();
+            sum += numbers[i];
+        }
+
+        double average = sum / 5.0;
+
+        System.out.println("Sum = " + sum);
+        System.out.println("Average = " + average);
+
+        sc.close();
+    }
+}
+
+3.
+package org.example;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a character: ");
+        char ch = sc.next().charAt(0);
+
+        ch = Character.toLowerCase(ch);
+
+        if (ch < 'a' || ch > 'z') {
+            System.out.println("Invalid character");
+        }
+        else if (ch == 'a' || ch == 'e' ||
+                 ch == 'i' || ch == 'o' || ch == 'u') {
+            System.out.println("Vowel");
+        }
+        else {
+            System.out.println("Consonant");
+        }
+
+        sc.close();
+    }
+}
+
+4.
+package org.example;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter length: ");
+        double length = sc.nextDouble();
+
+        System.out.print("Enter breadth: ");
+        double breadth = sc.nextDouble();
+
+        double area = length * breadth;
+        double perimeter = 2 * (length + breadth);
+
+        System.out.println("Area = " + area);
+        System.out.println("Perimeter = " + perimeter);
+
+        sc.close();
+    }
+}
+
+
+execution commands 
+gradle init
+./gradlew clean build
+./gradlew run
+./gradlew jar
