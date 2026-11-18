@@ -1,0 +1,59 @@
+sudo apt update
+sudo apt install ansible -y
+ansible --version
+ansible localhost -m ping -c local
+mkdir -p ~/jenkinpipeline/ansible-roles
+cd ~/jenkinpipeline/ansible-roles
+ansible-galaxy init prerequisites
+ansible-galaxy init postgresql
+ansible-galaxy init apache
+cd prerequisites/tasks/main.yml
+---
+- name: Install Git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+cd postgresql/tasks/main.yml
+---
+- name: Install PostgreSQL
+  apt:
+    name: postgresql
+    state: present
+    update_cache: yes
+
+- name: Start PostgreSQL
+  service:
+    name: postgresql
+    state: started
+    enabled: yes
+cd apache/tasks/main.yml
+---
+- name: Install Apache
+  apt:
+    name: apache2
+    state: present
+    update_cache: yes
+
+- name: Start Apache
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+cd stack.yml
+---
+- name: Install required packages
+  hosts: localhost
+  become: yes
+  connection: local
+
+  roles:
+    - prerequisites
+    - postgresql
+    - apache
+ansible-playbook -i localhost, stack.yml
+git --version
+psql --version
+apache2 -v
+sudo service postgresql status
+sudo service apache2 status
