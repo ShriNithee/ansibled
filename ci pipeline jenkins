@@ -1,0 +1,236 @@
+go to terminal 
+sudo apt update
+sudo apt install openjdk-21-jdk -y
+nano Main.java
+nano Jenkinsfile
+git init
+git add .
+git config --global user.name "Your GitHub Username"
+git config --global user.email "your-email@gmail.com"
+git commit -m "commit msg"
+git branch -M main
+git remote add origin https://github.com/USERNAME/REPOSITORY.git
+git push -u origin main
+
+then jenkins dashboard new item pipeline ok scroll clik Select Pipeline script from SCM.
+Select Git, enter your repository URL and branch main.
+Set Script Path to Jenkinsfile.
+Click Build Now and check Console Output.
+
+common jenkinsfiles code(here nah input value alone u can change for each question n give)
+
+pipeline {
+    agent any
+
+    environment {
+        INPUT = '121'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                sh 'javac Main.java'
+            }
+        }
+
+        stage('Execute') {
+            steps {
+                sh 'echo "$INPUT" | java Main'
+            }
+        }
+    }
+}
+
+1.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+
+        int original = n;
+        int reverse = 0;
+
+        while (n > 0) {
+            int digit = n % 10;
+            reverse = reverse * 10 + digit;
+            n = n / 10;
+        }
+
+        if (original == reverse)
+            System.out.println("Palindrome Number");
+        else
+            System.out.println("Not a Palindrome Number");
+
+        sc.close();
+    }
+}
+
+2.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+
+        boolean prime = n > 1;
+
+        for (int i = 2; i <= n / 2; i++) {
+            if (n % i == 0) {
+                prime = false;
+                break;
+            }
+        }
+
+        if (prime)
+            System.out.println("Prime Number");
+        else
+            System.out.println("Not a Prime Number");
+
+        sc.close();
+    }
+}
+
+3.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+
+        long fact = 1;
+
+        for (int i = 1; i <= n; i++) {
+            fact = fact * i;
+        }
+
+        System.out.println("Factorial = " + fact);
+
+        sc.close();
+    }
+}
+
+4.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of terms: ");
+        int n = sc.nextInt();
+
+        int a = 0, b = 1;
+
+        for (int i = 1; i <= n; i++) {
+            System.out.print(a + " ");
+
+            int c = a + b;
+            a = b;
+            b = c;
+        }
+
+        sc.close();
+    }
+}
+
+5.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(n + " x " + i + " = " + (n * i));
+        }
+
+        sc.close();
+    }
+}
+
+6.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int a[] = new int[5];
+        int sum = 0;
+
+        System.out.println("Enter five numbers:");
+
+        for (int i = 0; i < 5; i++) {
+            a[i] = sc.nextInt();
+            sum = sum + a[i];
+        }
+
+        System.out.println("Sum = " + sum);
+
+        sc.close();
+    }
+}
+
+7.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter three numbers:");
+
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+
+        int largest = a;
+
+        if (b > largest)
+            largest = b;
+
+        if (c > largest)
+            largest = c;
+
+        System.out.println("Largest = " + largest);
+
+        sc.close();
+    }
+}
+
+8.
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Celsius: ");
+        double c = sc.nextDouble();
+
+        double f = (c * 9 / 5) + 32;
+
+        System.out.println("Fahrenheit = " + f);
+
+        sc.close();
+    }
+}
